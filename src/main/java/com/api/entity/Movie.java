@@ -5,13 +5,12 @@
  */
 package com.api.entity;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import lombok.Data;
 
 /**
@@ -28,30 +27,31 @@ public class Movie {
     @Column(name = "id_movie")
     private Long idMovie;
 
-    @NotBlank
+ 
     @Column(name = "image")
     private String image;
 
-    @NotBlank
+  
     @Column(name = "title")
     private String title;
 
-    @NotNull
+   
     @Column(name = "created_date")
     private LocalDate createdDate;
 
-    @NotNull
+    
     @Column(name = "qualification")
     private Integer qualification;
 
-    @NotNull
+    
     @Column(name = "id_gender")
     private Integer idGender;
     // Una pelicula puede tener muchas generos
 
     @ManyToMany(mappedBy = "movies", cascade = CascadeType.ALL)
     private List<Character> characters = new ArrayList<>();
-       // Add and remove paises
+    
+    // Add and remove paises
     public void addPais(Character pais) {
         this.characters.add(pais);
     }

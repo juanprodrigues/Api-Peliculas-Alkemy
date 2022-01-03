@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Index Pelicula</title>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    </head>
+
+    <body>
+
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+
+            body{
+                margin: 0;
+                font-size: .9rem;
+                font-weight: 400;
+                line-height: 1.6;
+                color: #212529;
+                text-align: left;
+                background-color: #f5f8fa;
+            }
+
+            .navbar-laravel
+            {
+                box-shadow: 0 2px 4px rgba(0,0,0,.04);
+            }
+
+            .navbar-brand , .nav-link, .my-form, .login-form
+            {
+                font-family: Raleway, sans-serif;
+            }
+
+            .my-form
+            {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .my-form .row
+            {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .login-form
+            {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .login-form .row
+            {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+        </style>
+
+
+
+        <!--div id="alerta"></div>
+
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+               Tabs Titles 
+
+               
+                <div class="fadeIn first">
+                    <img src="https://i.ibb.co/HhY87N7/logo.png" id="icon" alt="User Icon" />
+                </div-->
+
+
+        <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand" href="#">Laravel</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Register</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <main class="login-form">
+            <div class="cotainer">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">Register</div>
+                            <div class="card-body">
+                                <form >
+                                    <div class="form-group row">
+                                        <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="email" class="form-control" name="email-address" required autofocus>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                        <div class="col-md-6">
+                                            <input  type="password" id="password" class="form-control" name="password" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6 offset-md-4">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="remember"> Remember Me
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 offset-md-4">
+                                        <button  id="crearUsuario" type="submit" class="btn btn-primary">
+                                            Register
+                                        </button>
+                                        <a th:href="@{ingreso}" class="btn btn-link">
+                                            Forgot Your Password?
+                                        </a>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div id="alerta"></div>
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script type="text/javascript">
+
+            $("#crearUsuario").click(function () {
+
+
+                var usuario = {
+                    username: $("#email").val(),
+                    password: $("#password").val(),
+                }
+                $.ajax({
+                    url: '/auth/signin',
+                    dataType: 'json',
+                    contentType: "application/json",
+                    type: 'POST',
+                    data: JSON.stringify(usuario),
+                    success: function (data) {
+                        alert("exito" +data);
+                    },
+                    error: function (data) {
+                      $("#alerta").append(alert("error" + data));
+                    }
+                });
+            });
+
+        </script>
+
+    </body>
+</html>

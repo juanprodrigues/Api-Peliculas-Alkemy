@@ -1,0 +1,868 @@
+{
+	"info": {
+		"_postman_id": "164f4a9c-8b10-49dc-b95f-d23d1fd9f4a3",
+		"name": "Alkemy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Personaje",
+			"item": [
+				{
+					"name": "Listar todos los personajes:Imagen y Nombre",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2MzkzODU5NjksImlhdCI6MTYzOTM0OTk2OX0.Zp09rnBeD2aQuOqprMhmjl4_8AN2YeEBtCOAMn9pC9I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todos los personajes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExMTk1MDQsImlhdCI6MTY0MTA4MzUwNH0.hzccIN6Fng-TVw-8HL11GZGBnDyLIXLZDwdq7qjmEq0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar personaje:IDMovie",
+					"request": {
+						"auth": {
+							"type": "oauth1",
+							"oauth1": [
+								{
+									"key": "signatureMethod",
+									"value": "HMAC-SHA1",
+									"type": "string"
+								},
+								{
+									"key": "version",
+									"value": "1.0",
+									"type": "string"
+								},
+								{
+									"key": "addParamsToHeader",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "addEmptyParamsToSign",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExMTY4NjEsImlhdCI6MTY0MTA4MDg2MX0.jkihQXcdkGOxYrOi4I3YeLUMvXYNw98G46hT2VLN35o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character?movies=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar personaje:Name",
+					"request": {
+						"auth": {
+							"type": "oauth1",
+							"oauth1": [
+								{
+									"key": "signatureMethod",
+									"value": "HMAC-SHA1",
+									"type": "string"
+								},
+								{
+									"key": "version",
+									"value": "1.0",
+									"type": "string"
+								},
+								{
+									"key": "addParamsToHeader",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "addEmptyParamsToSign",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2MzkzODU5NjksImlhdCI6MTYzOTM0OTk2OX0.Zp09rnBeD2aQuOqprMhmjl4_8AN2YeEBtCOAMn9pC9I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character?movies=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar personaje:Edad",
+					"request": {
+						"auth": {
+							"type": "oauth1",
+							"oauth1": [
+								{
+									"key": "signatureMethod",
+									"value": "HMAC-SHA1",
+									"type": "string"
+								},
+								{
+									"key": "version",
+									"value": "1.0",
+									"type": "string"
+								},
+								{
+									"key": "addParamsToHeader",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "addEmptyParamsToSign",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2MzkzODU5NjksImlhdCI6MTYzOTM0OTk2OX0.Zp09rnBeD2aQuOqprMhmjl4_8AN2YeEBtCOAMn9pC9I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character?age=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Personaje",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExMTY4NjEsImlhdCI6MTY0MTA4MDg2MX0.jkihQXcdkGOxYrOi4I3YeLUMvXYNw98G46hT2VLN35o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id_character\":4,\r\n   \"image\":\"/ima3.png\",\r\n   \"name\":\"bart\",\r\n   \"age\":8,\r\n   \"weight\":50.0,\r\n   \"history\":\"historia de liza\",\r\n   \"id_movie\":1,\r\n   \"movies\":[\r\n      {     \r\n          \"id\":2,\r\n         \"imagen\":\"/usr/tmp/CCC.jpg\",\r\n         \"titulo\":\"Obelisco101\",\r\n         \"calificacion\":5,\r\n         \"fechaCreacion\":\"2021-09-28\"\r\n      }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/character/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExMTY4NjEsImlhdCI6MTY0MTA4MDg2MX0.jkihQXcdkGOxYrOi4I3YeLUMvXYNw98G46hT2VLN35o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Personaje",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2MzkzODU5NjksImlhdCI6MTYzOTM0OTk2OX0.Zp09rnBeD2aQuOqprMhmjl4_8AN2YeEBtCOAMn9pC9I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/character/delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Personaje",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2MzkzODU5NjksImlhdCI6MTYzOTM0OTk2OX0.Zp09rnBeD2aQuOqprMhmjl4_8AN2YeEBtCOAMn9pC9I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n        \"id_character\": 4,\r\n        \"image\": \"/ima2.png\",\r\n        \"name\": \"Bart\",\r\n        \"age\": 10,\r\n        \"weight\": 60.0,\r\n        \"history\": \"Esta es la historia verdadera de Bart\",\r\n        \"id_movie\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/character/update/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"character",
+								"update",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autorizacion",
+			"item": [
+				{
+					"name": "Registrarse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"juanprodrigues.33@gmail.com\",\r\n    \"password\":\"password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iniciar Seccion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"juanprodrigues.33@gmail.com\",\r\n    \"password\":\"password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peliculas",
+			"item": [
+				{
+					"name": "Listar Peliculas Basic",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas las Pelicuas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"imagen\": \"/usr/tmp/CCC.jpg\",\r\n    \"titulo\": \"Obelisco101\",\r\n    \"fechaCreacion\": \"2021-09-28\",\r\n    \"calificacion\": 5,\r\n    \"idGenero\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardad Pelicula",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":4,\r\n    \"imagen\": \"/usr/tmp/CCC.jpg\",\r\n    \"titulo\": \"Futurama\",\r\n    \"fechaCreacion\": \"2021-09-28\",\r\n    \"calificacion\": 5,\r\n    \"idGenero\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Pelicula",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\": \"/usr/tmp/123.jpg\",\r\n    \"titulo\": \"Futurama La Pelicula\",\r\n    \"fechaCreacion\": \"2021-09-28\",\r\n    \"calificacion\": 3,\r\n    \"idGenero\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Pelicula",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":4,\r\n    \"imagen\": \"/usr/tmp/CCC.jpg\",\r\n    \"titulo\": \"Futurama\",\r\n    \"fechaCreacion\": \"2021-09-28\",\r\n    \"calificacion\": 5,\r\n    \"idGenero\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Movie: Nombre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies?name=Futurama La Pelicula",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Futurama La Pelicula"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Movie:Order ASC",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/movies?order=ASC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "ASC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Movie:Order DESC",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/movies?order=DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "DESC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Movie: IdGenero",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/movies?gender=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genero",
+			"item": [
+				{
+					"name": "Listar Generos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gender",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gender"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Genero",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"imagen\": \"/Teeror.ong\",\r\n    \"nombre\": \"Romance\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gender",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gender"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Genero",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"imagen\": \"/animacion.png\",\r\n    \"nombre\": \"Animacion\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gender/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gender",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Genero",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJleHAiOjE2NDExODUzMTAsImlhdCI6MTY0MTE0OTMxMH0.NdCeDkJew3IXSHmqrluvdZ4IaxBwhRoxOQZ5rbC2XgU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"imagen\": \"/gen3.ong\",\r\n    \"nombre\": \"Terror\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gender/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gender",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

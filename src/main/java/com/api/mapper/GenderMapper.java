@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package com.api.mapper;
-import com.api.builder.GenderBuilder;
+
 import com.api.dto.GenderDTO;
 import com.api.entity.Gender;
+
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+
 /**
  *
  * @author JuanPC
@@ -17,35 +19,42 @@ import java.util.*;
 
 @Component
 public class GenderMapper {
-     public Gender genderDTO2Entity(GenderDTO dto) {
-        //ContienenteEntity entity = new ContienenteEntity();
-        //entity.setImagen(dto.getImagen());
-        //entity.setDenominacion(dto.getDenominacion());
-        //return entity;
+	public Gender genderDTO2Entity(GenderDTO dto) {
+		Gender entity = new Gender();
+		entity.setIdGender(dto.getId());
+		entity.setImage(dto.getImagen());
+		entity.setName(dto.getNombre());
+		return entity;
+	}
 
-        Gender entity = new GenderBuilder()
-                .imagen(dto.getImagen())
-                .nombre(dto.getNombre())
-                .build();
+	public GenderDTO genderEntity2DTO(Gender entity) {
+		GenderDTO dto = new GenderDTO();
+		dto.setId(entity.getIdGender());
+		dto.setImagen(entity.getImage());
+		dto.setNombre(entity.getName());
+		return dto;
+	}
 
-        return entity;
-    }
+	public List<GenderDTO> genderEntityList2DTOList(List<Gender> entities) {
+		List<GenderDTO> dtos = new ArrayList<>();
+		for (Gender entity : entities) {
+			dtos.add(this.genderEntity2DTO(entity));
+		}
+		return dtos;
+	}
 
-    public GenderDTO genderEntity2DTO(Gender entity) {
-        GenderDTO dto = new GenderDTO();
-        dto.setId(entity.getIdGender());
-        dto.setImagen(entity.getImage());
-        dto.setNombre(entity.getName());
-        return dto;
-    }
-
-    public List<GenderDTO> genderEntityList2DTOList(List<Gender> entities) {
-        List<GenderDTO> dtos = new ArrayList<>();
-        for (Gender entity : entities) {
-            dtos.add(this.genderEntity2DTO(entity));
-        }
-        return dtos;
-    }
+	public List<Gender> DTOList2genderEntityList(List<GenderDTO> entities) {
+		List<Gender> entity = new ArrayList<>();
+		for (GenderDTO dtos : entities) {
+			entity.add(this.genderDTO2Entity(dtos));
+		}
+		return entity;
+	}
+	
+	public void genderEntityRefreshValues(Gender gender, GenderDTO genderDTO) {
+		gender.setImage(genderDTO.getImagen());
+		gender.setName(genderDTO.getNombre());
+	}
 
 
 }

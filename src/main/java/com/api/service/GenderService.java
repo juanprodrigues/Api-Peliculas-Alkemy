@@ -5,10 +5,8 @@
  */
 package com.api.service;
 
-
 import com.api.dto.GenderDTO;
 import java.util.List;
-
 
 /**
  *
@@ -16,7 +14,11 @@ import java.util.List;
  */
 public interface GenderService {
 
-    List<GenderDTO> getAllContinentes();
+	List<GenderDTO> getAllContinentes();
 
-    GenderDTO save(GenderDTO continente);
+	GenderDTO save(GenderDTO continente);
+
+	void delete(Long id);
+
+	GenderDTO update(Long id, GenderDTO movieDTO);
 }

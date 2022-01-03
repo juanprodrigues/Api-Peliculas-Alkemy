@@ -5,7 +5,7 @@
  */
 package com.api.dto;
 
-import com.api.entity.Movie;
+
 import java.util.List;
 import lombok.Data;
 

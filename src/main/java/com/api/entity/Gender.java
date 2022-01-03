@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -29,11 +27,11 @@ public class Gender {
 	@Column(name = "id_gender")
 	private Long idGender;
 	
-        @NotBlank
+        
 	@Column(name = "title")
 	private String name;
         
-	@NotBlank
+	
 	@Column(name = "image")
 	private String image;
 	

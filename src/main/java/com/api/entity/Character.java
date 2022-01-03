@@ -12,8 +12,6 @@ package com.api.entity;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-
-import javax.validation.constraints.*;
 import lombok.Data;
 
 @Entity
@@ -26,27 +24,27 @@ public class Character {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCharacter;
 
-    @NotBlank
+    
     @Column(name = "image")
     private String image;
 
-    @NotBlank
+    
     @Column(name = "name")
     private String name;
 
-    @NotNull
+    
     @Column(name = "age")
     private Integer age;
 
-    @NotNull
+    
     @Column(name = "weight")
     private Double weight;
 
-    @NotBlank
+    
     @Column(name = "history")
     private String history;
 
-    @NotNull
+    
     @Column(name = "id_movie")
     private Long idMovie;
     //relacion uno a muchos
@@ -60,13 +58,18 @@ public class Character {
 
     @ManyToMany(
             cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
+                CascadeType.ALL,
+                CascadeType.ALL
             })
     @JoinTable(
             name = "movie_character",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "character_id"))
     private Set<Movie> movies = new HashSet<>();
+
+    
+    public void addMovie(Movie movieAdd) {
+        this.movies.add(movieAdd);
+    }
 
 }

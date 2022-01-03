@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package com.api.dto;
-import com.api.entity.Character;
-import java.util.Date;
 import java.util.List;
 import lombok.Data;
 

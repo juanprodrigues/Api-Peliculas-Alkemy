@@ -23,83 +23,86 @@ import java.util.*;
 @Component
 public class MovieMapper {
 
-    @Autowired
-    private CharacterMapper paisMapper;
+	@Autowired
+	private CharacterMapper characterMapper;
 
-    public Movie movieDTO2Entity(MovieDTO dto) {
-        Movie entity = new Movie();
-        entity.setImage(dto.getImagen());
-        entity.setTitle(dto.getTitulo());
-        entity.setCreatedDate(
-                this.string2LocalDate(dto.getFechaCreacion())
-        );
-        entity.setQualification(dto.getCalificacion());
-        entity.setIdGender(dto.getIdGenero());
-        return entity;
-    }
+	public Movie movieDTO2Entity(MovieDTO dto) {
+		Movie entity = new Movie();
+		entity.setIdMovie(dto.getId());
+		entity.setImage(dto.getImagen());
+		entity.setTitle(dto.getTitulo());
+		entity.setCreatedDate(this.string2LocalDate(dto.getFechaCreacion()));
+		entity.setQualification(dto.getCalificacion());
+		entity.setIdGender(dto.getIdGenero());
+		return entity;
+	}
 
-    public MovieDTO movieEntity2DTO(Movie entity) {
-        MovieDTO dto = new MovieDTO();
-        dto.setId(entity.getIdMovie());
-        dto.setImagen(entity.getImage());
-        dto.setTitulo(entity.getTitle());
-        dto.setFechaCreacion(entity.getCreatedDate().toString());
-        dto.setCalificacion(entity.getQualification());
-        dto.setIdGenero(entity.getIdGender());
+	public MovieDTO movieEntity2DTO(Movie entity, Boolean boolean1) {
+		MovieDTO dto = new MovieDTO();
+		dto.setId(entity.getIdMovie());
+		dto.setImagen(entity.getImage());
+		dto.setTitulo(entity.getTitle());
+		dto.setFechaCreacion(entity.getCreatedDate().toString());
+		dto.setCalificacion(entity.getQualification());
+		dto.setIdGenero(entity.getIdGender());
+		//System.out.println("estoy en el mapper de movie");
+		if (boolean1) {
+			List<CharacterDTO> characterDTO = this.characterMapper.characterEntityList2DTOList(entity.getCharacters());
+			dto.setCharacters(characterDTO);
+		}
 
-        List<CharacterDTO> paisesDTO = this.paisMapper.paisEntityList2DTOList(entity.getCharacters());
-        dto.setCharacters(paisesDTO);
+		return dto;
+	}
 
-        return dto;
-    }
+	public LocalDate string2LocalDate(String stringDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate date = LocalDate.parse(stringDate, formatter);
+		return date;
+	}
 
-    private LocalDate string2LocalDate(String stringDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(stringDate, formatter);
-        return date;
-    }
+	public String LocalDate2String(LocalDate localDate) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String output = dtf.format(localDate);
+		return output;
+	}
 
-    public void movieEntityRefreshValues(Movie entity, MovieDTO movieDTO) {
-        entity.setImage(movieDTO.getImagen());
-        entity.setTitle(movieDTO.getTitulo());
-        entity.setCreatedDate(
-                this.string2LocalDate(movieDTO.getFechaCreacion())
-        );
-        entity.setQualification(movieDTO.getCalificacion());
-        entity.setIdGender(movieDTO.getIdGenero());
-    }
+	public void movieEntityRefreshValues(Movie entity, MovieDTO movieDTO) {
+		entity.setImage(movieDTO.getImagen());
+		entity.setTitle(movieDTO.getTitulo());
+		entity.setCreatedDate(this.string2LocalDate(movieDTO.getFechaCreacion()));
+		entity.setQualification(movieDTO.getCalificacion());
+		entity.setIdGender(movieDTO.getIdGenero());
+	}
 
-    public Set<Movie> movieDTOList2Entity(List<MovieDTO> dtos) {
-        Set<Movie> entities = new HashSet<>();
-        for (MovieDTO dto : dtos) {
-            entities.add(this.movieDTO2Entity(dto));
-        }
-        return entities;
-    }
+	public Set<Movie> movieDTOList2Entity(List<MovieDTO> dtos) {
+		Set<Movie> entities = new HashSet<>();
+		for (MovieDTO dto : dtos) {
+			entities.add(this.movieDTO2Entity(dto));
+		}
+		return entities;
+	}
 
-    /**
-     * @param entities (Set or List)
-     * @param loadPaises
-     */
-    public List<MovieDTO> movieEntitySet2DTOList(List<Movie> entities) {
-        List<MovieDTO> dtos = new ArrayList<>();
-        for (Movie entity : entities) {
-            dtos.add(this.movieEntity2DTO(entity));
-        }
-        return dtos;
-    }
+	public List<MovieDTO> movieEntitySet2DTOList(Collection<Movie> entities, Boolean boolean1) {
+		List<MovieDTO> dtos = new ArrayList<>();
+		for (Movie entity : entities) {
+			dtos.add(this.movieEntity2DTO(entity, boolean1));
+		}
+		return dtos;
+	}
 
-    public List<MovieBasicDTO> movieEntitySet2BasicDTOList(List<Movie> entities) {
-        List<MovieBasicDTO> dtos = new ArrayList<>();
-        MovieBasicDTO basicDTO;
-        for (Movie entity : entities) {
-            basicDTO = new MovieBasicDTO();
-            basicDTO.setId(entity.getIdMovie());
-            basicDTO.setImagen(entity.getImage());
-            basicDTO.setTitulo(entity.getTitle());
-            dtos.add(basicDTO);
-        }
-        return dtos;
-    }
+	public List<MovieBasicDTO> movieEntitySet2BasicDTOList(List<Movie> entities) {
+		List<MovieBasicDTO> dtos = new ArrayList<>();
+		MovieBasicDTO basicDTO;
+		for (Movie entity : entities) {
+			basicDTO = new MovieBasicDTO();
+
+			basicDTO.setImagen(entity.getImage());
+			basicDTO.setTitulo(entity.getTitle());
+			basicDTO.setFechaCreacion(LocalDate2String(entity.getCreatedDate()));
+			
+			dtos.add(basicDTO);
+		}
+		return dtos;
+	}
 
 }

@@ -1,6 +1,5 @@
 package com.api.service.impl;
 
-
 import com.api.service.EmailService;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
@@ -19,42 +18,45 @@ import java.io.IOException;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    @Autowired
-    private Environment env;
+	@Autowired
+	private Environment env;
 
-    @Value("${juan.email.sender}")
-    private String emailSender;
-    @Value("${juan.email.enabled}")
-    private boolean enabled;
+	@Value("${user.movie.email.sender}")
+	private String emailSender;
+	@Value("${user.movie.email.enabled}")
+	private boolean enabled;
 
-    public void sendWelcomeEmailTo(String to) {
-        if (!enabled) {
-            return;
-        }
-        String apiKey = env.getProperty("EMAIL_API_KEY");
+	public void sendWelcomeEmailTo(String to) {
+		if (!enabled) {
+			return;
+		}
+		String apiKey = env.getProperty("EMAIL_API_KEY");
 
-        Email fromEmail = new Email(emailSender);
-        Email toEmail = new Email(to);
-        Content content = new Content(
-                "text/plain",
-                "Bienvenido/a a "
-        );
-        String subject = "Api Movies";
+		Email fromEmail = new Email(emailSender);
+		Email toEmail = new Email(to);
+		String mensaje = "Su registro al Challange fue exitoso";
 
-        Mail mail = new Mail(fromEmail, subject, toEmail, content);
-        SendGrid sg = new SendGrid(apiKey);
-        Request request = new Request();
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-            Response response = sg.api(request);
+		Content content = new Content("text/plain", mensaje);
+		String subject = "Challange Alkemy";
 
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-        } catch (IOException ex) {
-            System.out.println("Error trying to send the email");
-        }
-    }
+		Mail mail = new Mail(fromEmail, subject, toEmail, content);
+		SendGrid sg = new SendGrid(apiKey);
+		Request request = new Request();
+		try {
+			request.setMethod(Method.POST);
+			request.setEndpoint("mail/send");
+			request.setBody(mail.build());
+			Response response = sg.api(request);
+			Integer respuesta = response.getStatusCode();
+			if (respuesta == 202) {
+				System.out.println("ENVIO EXITOSO");
+			} else {
+
+				System.out.println("Ops hay un problema");
+			}
+
+		} catch (IOException ex) {
+			System.out.println("Error trying to send the email");
+		}
+	}
 }

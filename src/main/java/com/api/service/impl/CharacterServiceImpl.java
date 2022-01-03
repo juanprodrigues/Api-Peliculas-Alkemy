@@ -11,8 +11,7 @@ import com.api.entity.Character;
 import com.api.mapper.CharacterMapper;
 import com.api.repository.CharacterRepository;
 import com.api.service.CharacterService;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,129 +22,152 @@ import org.springframework.stereotype.Service;
 @Service
 public class CharacterServiceImpl implements CharacterService {
 
-    @Autowired
-    private CharacterRepository characterRepository;
-    private CharacterMapper characterMapper;
+	@Autowired
+	private CharacterRepository characterRepository;
+	@Autowired
+	private CharacterMapper characterMapper;
 
-    @Autowired
-    public CharacterServiceImpl(CharacterRepository characterRepository, CharacterMapper CharacterMapper) {
-        this.characterRepository = characterRepository;
-        this.characterMapper = CharacterMapper;
-    }
+	@Autowired
+	public CharacterServiceImpl(CharacterRepository characterRepository, CharacterMapper CharacterMapper) {
+		this.characterRepository = characterRepository;
+		this.characterMapper = CharacterMapper;
+	}
 
-    //listar todos los atribulos de un personaje
-    @Override
-    public List<CharacterDTO> getAllCharacter() {
-        List<Character> entities = this.characterRepository.findAll();
-        List<CharacterDTO> dtos = this.characterMapper.EntityList2DTOList(entities);
-        return dtos;
-    }
-    //listar todos el atributo de nombre y imagen de un personaje
+	// listar todos los atribulos de un personaje
+	@Override
+	public List<CharacterDTO> getAllCharacter(Boolean boolean1) {
+		List<Character> entities = this.characterRepository.findAll();
+		List<CharacterDTO> dtos = this.characterMapper.EntityList2DTOList(entities,boolean1);
+		return dtos;
+	}
+	// listar todos el atributo de nombre y imagen de un personaje
 
-    @Override
-    public List<CharacterDTOParameter> getNameImage() {
-        List<Character> entities = this.characterRepository.findAll();
-        List<CharacterDTOParameter> dtos = this.characterMapper.EntityList2DTOListNameImagen(entities);
-        return dtos;
-    }
+	@Override
+	public List<CharacterDTOParameter> getNameImage() {
+		List<Character> entities = this.characterRepository.findAll();
+		List<CharacterDTOParameter> dtos = this.characterMapper.EntityList2DTOListNameImagen(entities);
+		return dtos;
+	}
 
-    //Guardar un personaje
-    @Override
-    public CharacterDTO save(CharacterDTO paisDTO) {
-        Character paisEntity = this.characterMapper.CharacterDTO2Entity(paisDTO);
-        Character entitySaved = this.characterRepository.save(paisEntity);
-        CharacterDTO result = this.characterMapper.Entity2CharacterDTO(entitySaved);
-        return result;
-    }
+	// Guardar un personaje
+	@Override
+	public CharacterDTO save(CharacterDTO paisDTO) {
+		Character characterEntity = null;
+		Character entitySaved = null;
+		System.out.println("CharacterDTO entrante" + paisDTO.toString());
 
-    @Override
-    public Character getEntityById(Long id) {
-        return this.characterRepository.findById(id).get();
-    }
+		characterEntity = this.characterMapper.CharacterDTO2Entity(paisDTO);
+		System.out.println("characterEntity guardad en la base de datos" + characterEntity.toString());
 
-    @Override
-    public void deleteEntityBy(Long id) {
-        this.characterRepository.deleteById(id);
-    }
+		try {
+			// guarda en la bd
 
-    //Modificar un personaje
-    @Override
-    public CharacterDTO modify(CharacterDTO paisDTO, Long id) {
+			entitySaved = this.characterRepository.save(characterEntity);
+			System.out.println("Entidad guardad en la base de datos" + entitySaved.toString());
 
-        Character characterEntity = this.characterMapper.CharacterDTO2Entity(paisDTO);
+		} catch (Exception e) {
+			System.out.println("error en entitySaved: "+e.toString());
+		}
+		try {
+			CharacterDTO result = this.characterMapper.Entity2CharacterDTO(entitySaved,true);
+			return result;
+		} catch (Exception e) {
+			return null;
+		}
 
-        Character personajeUpdate = getEntityById(id);
+		
+	}
 
-        personajeUpdate.setImage(characterEntity.getImage());
-        personajeUpdate.setName(characterEntity.getName());
-        personajeUpdate.setAge(characterEntity.getAge());
-        personajeUpdate.setWeight(characterEntity.getWeight());
-        personajeUpdate.setHistory(characterEntity.getHistory());
+	// Servicio para buscar personaje por id
+	@Override
+	public Character getEntityById(Long id) {
+		return this.characterRepository.findById(id).get();
+	}
 
-        Character entitySaved = this.characterRepository.save(personajeUpdate);
+	// Servicio para eliminar personaje por id
+	@Override
+	public void deleteEntityBy(Long id) {
+		this.characterRepository.deleteById(id);
+	}
 
-        CharacterDTO result = this.characterMapper.Entity2CharacterDTO(entitySaved);
-        return result;
-    }
+	// Modificar un personaje
+	@Override
+	public CharacterDTO modify(CharacterDTO paisDTO, Long id) {
 
-    @Override
-    public List<CharacterDTO> findByName(String name) {
-        List<Character> characters = characterRepository.findByName(name);
-        List<CharacterDTO> charactersDTO = new ArrayList<>();
+		Character characterEntity = this.characterMapper.CharacterDTO2Entity(paisDTO);
 
-        for (Character character : characters) {
-            CharacterDTO characterDTO = new CharacterDTO();
-            characterDTO.setId_character(character.getIdCharacter());
-            characterDTO.setImage(character.getImage());
-            characterDTO.setName(character.getName());
-            characterDTO.setAge(character.getAge());
-            characterDTO.setWeight(character.getWeight());
-            characterDTO.setHistory(character.getHistory());
+		Character personajeUpdate = getEntityById(id);
 
-            charactersDTO.add(characterDTO);
-        }
+		personajeUpdate.setImage(characterEntity.getImage());
+		personajeUpdate.setName(characterEntity.getName());
+		personajeUpdate.setAge(characterEntity.getAge());
+		personajeUpdate.setWeight(characterEntity.getWeight());
+		personajeUpdate.setHistory(characterEntity.getHistory());
 
-        return charactersDTO;
-    }
+		Character entitySaved = this.characterRepository.save(personajeUpdate);
 
-    @Override
-    public List<CharacterDTO> findByAge(Integer age) {
-        List<Character> characters = characterRepository.findByAge(age);
+		CharacterDTO result = this.characterMapper.Entity2CharacterDTO(entitySaved,true);
+		return result;
+	}
 
-        List<CharacterDTO> charactersDTO = new ArrayList<>();
+	@Override
+	public List<CharacterDTO> findByName(String name) {
+		List<Character> characters = characterRepository.findByName(name);
+		List<CharacterDTO> charactersDTO = new ArrayList<>();
 
-        for (Character character : characters) {
-            CharacterDTO characterDTO = new CharacterDTO();
-            characterDTO.setId_character(character.getIdCharacter());
-            characterDTO.setImage(character.getImage());
-            characterDTO.setName(character.getName());
-            characterDTO.setAge(character.getAge());
-            characterDTO.setWeight(character.getWeight());
-            characterDTO.setHistory(character.getHistory());
-            characterDTO.setId_movie(character.getIdMovie());
-            charactersDTO.add(characterDTO);
-        }
+		for (Character character : characters) {
+			CharacterDTO characterDTO = new CharacterDTO();
+			characterDTO.setId_character(character.getIdCharacter());
+			characterDTO.setImage(character.getImage());
+			characterDTO.setName(character.getName());
+			characterDTO.setAge(character.getAge());
+			characterDTO.setWeight(character.getWeight());
+			characterDTO.setHistory(character.getHistory());
 
-        return charactersDTO;
-    }
+			charactersDTO.add(characterDTO);
+		}
 
-    @Override
-    public List<CharacterDTO> findByIdMovie(Long idMovie) {
-        List<Character> characters = characterRepository.findByIdMovie(idMovie);
-        List<CharacterDTO> charactersDTO = new ArrayList<>();
+		return charactersDTO;
+	}
 
-        for (Character character : characters) {
-            CharacterDTO characterDTO = new CharacterDTO();
-            characterDTO.setId_character(character.getIdCharacter());
-            characterDTO.setImage(character.getImage());
-            characterDTO.setName(character.getName());
-            characterDTO.setAge(character.getAge());
-            characterDTO.setWeight(character.getWeight());
-            characterDTO.setHistory(character.getHistory());
-            characterDTO.setId_movie(character.getIdMovie());
-            charactersDTO.add(characterDTO);
-        }
-        return charactersDTO;
-    }
+	@Override
+	public List<CharacterDTO> findByAge(Integer age) {
+		List<Character> characters = characterRepository.findByAge(age);
+
+		List<CharacterDTO> charactersDTO = new ArrayList<>();
+
+		for (Character character : characters) {
+			CharacterDTO characterDTO = new CharacterDTO();
+			characterDTO.setId_character(character.getIdCharacter());
+			characterDTO.setImage(character.getImage());
+			characterDTO.setName(character.getName());
+			characterDTO.setAge(character.getAge());
+			characterDTO.setWeight(character.getWeight());
+			characterDTO.setHistory(character.getHistory());
+			characterDTO.setId_movie(character.getIdMovie());
+			charactersDTO.add(characterDTO);
+		}
+
+		return charactersDTO;
+	}
+
+	@Override
+	public List<CharacterDTO> findByIdMovie(Long idMovie) {
+		List<Character> characters = characterRepository.findByIdMovie(idMovie);
+		List<CharacterDTO> charactersDTO = new ArrayList<>();
+
+		for (Character character : characters) {
+			CharacterDTO characterDTO = new CharacterDTO();
+			characterDTO.setId_character(character.getIdCharacter());
+			characterDTO.setImage(character.getImage());
+			characterDTO.setName(character.getName());
+			characterDTO.setAge(character.getAge());
+			characterDTO.setWeight(character.getWeight());
+			characterDTO.setHistory(character.getHistory());
+			characterDTO.setId_movie(character.getIdMovie());
+			charactersDTO.add(characterDTO);
+		}
+		return charactersDTO;
+	}
 
 }

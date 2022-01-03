@@ -1,27 +1,28 @@
 package com.api.service;
 
-
-
 import com.api.dto.MovieBasicDTO;
 import com.api.dto.MovieDTO;
+import com.api.entity.Movie;
+
 import java.util.List;
-import java.util.Set;
 
 public interface MovieService {
+	List<MovieDTO> getAll();
 
-    MovieDTO getDetailsById(Long id);
+	List<MovieBasicDTO> getAllBasic();
 
-    List<MovieBasicDTO> getAll();
+	MovieDTO save(MovieDTO movieDTO);
 
-    List<MovieDTO> getByFilters(String name, String date, Set<Long> cities, String order);
+	MovieDTO update(Long id, MovieDTO movieDTO);
 
-    MovieDTO save(MovieDTO movieDTO);
+	void delete(Long id);
 
-    MovieDTO update(Long id, MovieDTO movieDTO);
+	List<MovieDTO> listMovies2ListMoviesDTO(List<Movie> movies);
 
-    void addCharacter(Long id, Long idCharacter);
+	List<MovieDTO> findByName(String name);
 
-    void removeCharacter(Long id, Long idCharacter);
+	List<MovieDTO> findByIdGenre(Integer idGendero);
 
-    void delete(Long id);
+	List<MovieDTO> findByOrder(String order);
+
 }

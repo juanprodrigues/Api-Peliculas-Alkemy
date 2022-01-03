@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface CharacterService {
 
-    List<CharacterDTO> getAllCharacter();
+    List<CharacterDTO> getAllCharacter(Boolean boolean1 );
 
     List<CharacterDTOParameter> getNameImage();
 

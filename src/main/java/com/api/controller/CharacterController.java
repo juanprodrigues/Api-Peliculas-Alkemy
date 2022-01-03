@@ -36,7 +36,7 @@ public class CharacterController {
     //Traer todos los personales
     @GetMapping("/all")
     public ResponseEntity<List<CharacterDTO>> getAll() {
-        List<CharacterDTO> personajes = this.characterService.getAllCharacter();
+        List<CharacterDTO> personajes = this.characterService.getAllCharacter(false);
         return ResponseEntity.ok().body(personajes);
     }
 
