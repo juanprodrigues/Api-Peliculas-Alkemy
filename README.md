@@ -1,7 +1,20 @@
 # Api-Películas(Actualizacion 3 de Enero 2022)
+## CHALLENGE BACKEND - Java
+Este es un challenge para [Alkemy](https://www.alkemy.org/) para poder acceder a Aceleracion.
+## Objetivo
+Desarrollar una API para explorar el mundo de Disney, la cual permitirá conocer y modificar los
+personajes que lo componen y entender en qué películas estos participaron. 
+## Requisitos
+```
+Utilizar Spring Boot.
+No es necesario armar el Frontend.
+Las rutas deberán seguir el patrón REST.
+Utilizar la librería Spring Security.
+```
 
+## Despliegue del Proyecto
 Antes de ejecutar el proyecto se necesita configurar unas variables importantes.
-Como se usa la dependencia de MySQL, se debe crear un Base de datos con el nombre de **_alkemyPeliculas_**.
+Como se usa la dependencia de MySQL(mysql-connector-java), se debe crear un Base de datos con el nombre de **_alkemyPeliculas_** o hacer sus respectivas modificaciones.
 
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/alkemyPeliculas?serverTimezone=UTC
@@ -9,16 +22,21 @@ spring.datasource.username=Usuario
 spring.datasource.password=Contraseña
 ```
 
-Luego anteriormente, crear una cuenta en [SendGrid.](https://docs.sendgrid.com/for-developers/sending-email/pi-getting-started) 
+Luego anteriormente, crear una cuenta en [SendGrid.](https://docs.sendgrid.com/) 
 
-Además en el archivo _application.properties_ que se encuentra en _src\main\resources_ remplazar por sus datos correspondientes, en particular, se tiene que completar con su correo que se uso en [SendGrid.](https://docs.sendgrid.com/for-developers/sending-email/pi-getting-started) 
+Además en el archivo _application.properties_ que se encuentra en _src\main\resources_ remplazar por sus datos correspondientes, en particular, se tiene que completar con su correo que se uso en [SendGrid.](https://docs.sendgrid.com/)
 ```
 user.movie.email.sender=${CORREO}
 ```
-Además crear una variable de entorno como **_EMAIL_API_KEY_**(o similar) la cual almacene el token de autentificación única generado en la página.
+Para habilitar(true) esta opcion se puede mapular en la siguiente propiedad.
+
+```
+user.movie.email.enabled=false
+```
+Por ultimo crear una variable de entorno como **_EMAIL_API_KEY_**(o similar) la cual almacene el token de autentificación única generado en la página.
 
 
- Esta api se encuentra en desarrollo pero se pueden probar las siguientes funcionalidades con Postman.
+Esta api se encuentra en funcionamiento a la fecha.
 
 # Autentificación
 
