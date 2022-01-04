@@ -1,9 +1,28 @@
-# Api-Películas
+# Api-Películas(Actualizacion 3 de Enero 2022)
+
+Antes de ejecutar el proyecto se necesita configurar unas variables importantes.
+Como se usa la dependencia de MySQL, se debe crear un Base de datos con el nombre de **_alkemyPeliculas_**.
+
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/alkemyPeliculas?serverTimezone=UTC
+spring.datasource.username=Usuario
+spring.datasource.password=Contraseña
+```
+
+Luego anteriormente, crear una cuenta en [SendGrid.](https://docs.sendgrid.com/for-developers/sending-email/pi-getting-started) 
+
+Además en el archivo _application.properties_ que se encuentra en _src\main\resources_ remplazar por sus datos correspondientes, en particular, se tiene que completar con su correo que se uso en [SendGrid.](https://docs.sendgrid.com/for-developers/sending-email/pi-getting-started) 
+```
+user.movie.email.sender=${CORREO}
+```
+Además crear una variable de entorno como **_EMAIL_API_KEY_**(o similar) la cual almacene el token de autentificación única generado en la página.
+
+
  Esta api se encuentra en desarrollo pero se pueden probar las siguientes funcionalidades con Postman.
 
-## Autentificación
+# Autentificación
 
-Primero que nada se tienen que registrar un usuario para luego logearse.
+Primero que nada, se tienen que registrar un usuario para luego logearse.
 
 Método Post
 
@@ -39,26 +58,28 @@ Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFucHJvZHJpZ3Vlcy4zM0BnbWFpbC5jb20iLCJl
 
 Esta cadena de texto es la utilizaremos para realizar consultas
 
-## Guardar un personaje
+# Endpoint de personaje
+
+## Métodos Post de Consultas
 Para este caso vamos a guardar un personaje de los Simpson
 ```
 {
-        "id_character": 1,
-        "image": "/ima3.png",
-        "name": "Lisa",
-        "age": 8,
-        "weight": 50.0,
-        "history": "historia de liza",
-        "id_movie": 1,
-         "movies":[
-             {
+   "id_character":4,
+   "image":"/ima3.png",
+   "name":"bart",
+   "age":8,
+   "weight":50.0,
+   "history":"historia de liza",
+   "id_movie":1,
+   "movies":[
+      {     
+          "id":2,
          "imagen":"/usr/tmp/CCC.jpg",
-         "titulo":"Los Simpson La pelicula",
+         "titulo":"La Pelicula",
+         "calificacion":5,
          "fechaCreacion":"2021-09-28"
-            }
-         ]
-   
-
+      }
+   ]
 }
 ```
 
@@ -96,4 +117,138 @@ Buscar personaje por ID de personaje
 ```
 http://localhost:8080/character/2
 ```
+
+## Métodos Post de Consultas
+```
+http://localhost:8080/character/update/4
+```
+Body
+```
+{
+    "id_character": 4,
+    "image": "/ima2.png",
+    "name": "Bart",
+    "age": 10,
+    "weight": 60.0,
+    "history": "Esta es la historia verdadera de Bart",
+    "id_movie": 1
+}
+```
+
+## Métodos Delete de Consultas
+```
+http://localhost:8080/character/delete/3
+```
+# Endpoint de Película
+
+## Métodos Get de Consultas
+Listar Películas solo con los campos de imagen, título y fecha de creación.
+```
+http://localhost:8080/movies/
+```
+
+Listar con todos sus atributos.
+
+```
+http://localhost:8080/movies/all
+```
+
+Buscar por nombre.
+```
+http://localhost:8080/movies?name=Futurama La Pelicula
+```
+Buscar por Id de género.
+```
+http://localhost:8080/movies?gender=1
+```
+Buscar por todos y ordenarlos de forma ascendente.
+```
+http://localhost:8080/movies?order=ASC
+```
+Buscar por todos y ordenarlos de forma descendente.
+```
+http://localhost:8080/movies?order=DESC
+```
+## Métodos Post de Consultas.
+Para guardar una película
+```
+http://localhost:8080/movies
+```
+Body
+```
+{
+    "imagen": "/usr/tmp/CCC.jpg",
+    "titulo": "Futurama",
+    "fechaCreacion": "2021-09-28",
+    "calificacion": 5,
+    "idGenero": 2
+}
+```
+## Métodos Put de Consultas.
+Para Modificar una película
+
+```
+http://localhost:8080/movies/1
+```
+Body
+```
+{
+    "imagen": "/usr/tmp/123.jpg",
+    "titulo": "Futurama La Pelicula",
+    "fechaCreacion": "2021-09-28",
+    "calificacion": 3,
+    "idGenero": 2
+}
+```
+
+## Métodos delete de Consultas.
+
+Para eliminar una película
+```
+http://localhost:8080/movies/4
+```
+
+
+# Endpoint de Genero
+Estos endpoint corresponden a un CRUD.
+
+## Método Get
+Listar
+```
+http://localhost:8080/gender
+```
+
+## Método Post
+Guardar
+```
+http://localhost:8080/gender
+```
+Body
+```
+{
+    "imagen": "/Teeror.ong",
+    "nombre": "Romance"
+}
+``` 
+
+## Método Put
+Modificar
+```
+http://localhost:8080/gender/3
+```
+Body
+```
+{
+    "imagen": "/Teeror.ong",
+    "nombre": "Romance"
+}
+``` 
+
+## Método delete
+Eliminar
+```
+http://localhost:8080/gender/4
+```
+
+
 
