@@ -136,7 +136,8 @@ Buscar personaje por ID de personaje
 http://localhost:8080/character/2
 ```
 
-## Métodos Post de Consultas
+## Métodos Put de Consultas
+Modificar una Personaje
 ```
 http://localhost:8080/character/update/4
 ```
@@ -154,6 +155,7 @@ Body
 ```
 
 ## Métodos Delete de Consultas
+Para eliminar un personaje.
 ```
 http://localhost:8080/character/delete/3
 ```
